@@ -1,0 +1,14 @@
+<litepal>
+    <dbname value="orange_weather" />
+
+    <version value="1"/>
+
+    <list>
+        <mapping class="com.ksblletba.orangeweather.db.Province" />
+        <mapping class="com.ksblletba.orangeweather.db.City" />
+        <mapping class="com.ksblletba.orangeweather.db.County" />
+
+    </list>
+
+
+</litepal>
