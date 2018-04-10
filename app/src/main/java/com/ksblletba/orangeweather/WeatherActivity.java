@@ -1,5 +1,6 @@
 package com.ksblletba.orangeweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.ksblletba.orangeweather.gson.Forecast;
 import com.ksblletba.orangeweather.gson.Weather;
+import com.ksblletba.orangeweather.service.AutoService;
 import com.ksblletba.orangeweather.util.HttpUtil;
 import com.ksblletba.orangeweather.util.Utility;
 
@@ -147,7 +149,6 @@ public class WeatherActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         if (weather != null && "ok".equals(weather.status)) {
-
                             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this).edit();
                             editor.putString("weather", responseText);
                             editor.apply();
@@ -166,6 +167,12 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
     private void showWeatherInfo(Weather weather) {
+        if (weather != null && "ok".equals(weather.status)) {
+            Intent intent = new Intent(WeatherActivity.this, AutoService.class);
+            startService(intent);
+        } else {
+            Toast.makeText(this,"获取天气信息失败",Toast.LENGTH_SHORT).show();
+        }
         String cityName = weather.basic.cityName;
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
         String degree = weather.now.temperature + "℃";
