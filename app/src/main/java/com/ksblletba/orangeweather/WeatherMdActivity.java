@@ -5,9 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -94,6 +96,8 @@ public class WeatherMdActivity extends AppCompatActivity {
     @BindView(R.id.draw_md)
     DrawerLayout drawMd;
 
+    private NavigationView navigationView;
+
     private String weatherId;
 
     @Override
@@ -116,11 +120,12 @@ public class WeatherMdActivity extends AppCompatActivity {
         carwashText = findViewById(R.id.carwash_text);
         sportText = findViewById(R.id.sport_text);
         swipeMd = findViewById(R.id.swipe_md);
+        navigationView =findViewById(R.id.nav_view);
         setSupportActionBar(toolBar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_public_white_24dp);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         }
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         String weatherUrl = pref.getString("weather", null);
@@ -145,6 +150,20 @@ public class WeatherMdActivity extends AppCompatActivity {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 swipeMd.setEnabled(verticalOffset >= 0 ? true : false);
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.nav_settings:
+                        break;
+                    case R.id.nav_place:
+                        Intent intent = new Intent(WeatherMdActivity.this,MainActivity.class);
+                        startActivity(intent);
+                }
+                return true;
             }
         });
     }

@@ -143,13 +143,16 @@
 
         </android.support.design.widget.CoordinatorLayout>
 
-        <fragment
-            android:id="@+id/choose_area_fragment"
-            android:name="com.ksblletba.orangeweather.ChooseAreaFragment"
-            android:layout_width="match_parent"
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="280dp"
             android:layout_height="match_parent"
-            android:layout_gravity="start"/>
+            android:layout_gravity="start"
+            app:menu="@menu/nav_menu"
+            app:headerLayout="@layout/nav_head">
 
+
+        </android.support.design.widget.NavigationView>
 
     </android.support.v4.widget.DrawerLayout>
 
