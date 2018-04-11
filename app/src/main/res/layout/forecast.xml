@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="15dp"
-    android:background="#8000">
+    android:layout_margin="15dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,7 +13,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:text="预报"
-        android:textColor="#fff"
+
         android:textSize="20sp"/>
 
     <LinearLayout
@@ -34,8 +33,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:layout_gravity="center_vertical"
-                android:textColor="#fff"/>
+                android:layout_gravity="center_vertical" />
 
             <TextView
                 android:id="@+id/info_text0"
@@ -43,8 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:textColor="#fff"/>
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/max_text0"
@@ -52,8 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center"
-                android:gravity="right"
-                android:textColor="#fff"/>
+                android:gravity="right" />
 
             <TextView
                 android:id="@+id/min_text0"
@@ -61,8 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="right"
-                android:textColor="#fff" />
+                android:gravity="right" />
 
         </LinearLayout>
         <LinearLayout
@@ -76,8 +71,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:layout_gravity="center_vertical"
-                android:textColor="#fff"/>
+                android:layout_gravity="center_vertical" />
 
             <TextView
                 android:id="@+id/info_text1"
@@ -85,8 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:textColor="#fff"/>
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/max_text1"
@@ -94,8 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center"
-                android:gravity="right"
-                android:textColor="#fff"/>
+                android:gravity="right" />
 
             <TextView
                 android:id="@+id/min_text1"
@@ -103,8 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="right"
-                android:textColor="#fff" />
+                android:gravity="right" />
 
         </LinearLayout>
         <LinearLayout
@@ -118,8 +109,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:layout_gravity="center_vertical"
-                android:textColor="#fff"/>
+                android:layout_gravity="center_vertical" />
 
             <TextView
                 android:id="@+id/info_text2"
@@ -127,8 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:textColor="#fff"/>
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/max_text2"
@@ -136,8 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center"
-                android:gravity="right"
-                android:textColor="#fff"/>
+                android:gravity="right" />
 
             <TextView
                 android:id="@+id/min_text2"
@@ -145,8 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="right"
-                android:textColor="#fff" />
+                android:gravity="right" />
 
         </LinearLayout>
 

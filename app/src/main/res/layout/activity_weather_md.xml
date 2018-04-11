@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_md"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+    tools:context="com.ksblletba.orangeweather.WeatherMdActivity">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/draw_md"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:fitsSystemWindows="true">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:contentScrim="@color/colorPrimary"
+                    app:layout_scrollFlags="exitUntilCollapsed|scroll">
+
+                    <ImageView
+                        android:id="@+id/weather_pic"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:layout_collapseMode="parallax"
+                        android:fitsSystemWindows="true"/>
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/tool_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        app:layout_collapseMode="pin">
+
+                    </android.support.v7.widget.Toolbar>
+
+
+                </android.support.design.widget.CollapsingToolbarLayout>
+
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    android:clipToPadding="true">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        app:cardCornerRadius="4dp"
+                        android:elevation="12dp"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground">
+                        <include layout="@layout/now" />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        app:cardCornerRadius="4dp"
+                        android:elevation="12dp"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground">
+                        <include layout="@layout/forecast"/>
+                        <TextView
+                            android:id="@+id/demo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        app:cardCornerRadius="4dp"
+                        android:elevation="12dp"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground">
+                        <include layout="@layout/aqi" />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        app:cardCornerRadius="4dp"
+                        android:elevation="12dp"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground">
+                        <include layout="@layout/suggestion" />
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+
+            </android.support.v4.widget.NestedScrollView>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:src="@drawable/ic_ac_unit_white_24dp"
+                app:layout_anchor="@id/app_bar"
+                app:layout_anchorGravity="bottom|end" />
+
+
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <fragment
+            android:id="@+id/choose_area_fragment"
+            android:name="com.ksblletba.orangeweather.ChooseAreaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"/>
+
+
+    </android.support.v4.widget.DrawerLayout>
+
+
+
+
+
+</android.support.v4.widget.SwipeRefreshLayout>

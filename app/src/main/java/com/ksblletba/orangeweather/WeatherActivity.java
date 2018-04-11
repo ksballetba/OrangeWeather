@@ -40,8 +40,8 @@ public class WeatherActivity extends AppCompatActivity {
 
     @BindView(R.id.title_city)
     TextView titleCity;
-    @BindView(R.id.title_update_time)
-    TextView titleUpdateTime;
+//    @BindView(R.id.title_update_time)
+//    TextView titleUpdateTime;
     @BindView(R.id.degree_text)
     TextView degreeText;
     @BindView(R.id.weather_info_text)
@@ -67,6 +67,7 @@ public class WeatherActivity extends AppCompatActivity {
     private Button navButton;
     public DrawerLayout drawerLayout;
     private String mWeatherId;
+    private Button mdButton;
 
 
     @Override
@@ -83,7 +84,7 @@ public class WeatherActivity extends AppCompatActivity {
         bingPicIv = findViewById(R.id.bing_bg);
         weatherLayout = findViewById(R.id.weather_layout);
         titleCity = findViewById(R.id.title_city);
-        titleUpdateTime = findViewById(R.id.title_update_time);
+//        titleUpdateTime = findViewById(R.id.title_update_time);
         degreeText = findViewById(R.id.degree_text);
         weatherInfoText = findViewById(R.id.weather_info_text);
         forecastLayout = findViewById(R.id.forecast_layout);
@@ -96,10 +97,20 @@ public class WeatherActivity extends AppCompatActivity {
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         navButton = findViewById(R.id.switch_button);
         drawerLayout = findViewById(R.id.draw_layout);
+        mdButton = findViewById(R.id.md_button);
         navButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+        mdButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WeatherActivity.this,WeatherMdActivity.class);
+                intent.putExtra("weather_id", mWeatherId);
+                startActivity(intent);
+                finish();
             }
         });
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -178,7 +189,7 @@ public class WeatherActivity extends AppCompatActivity {
         String degree = weather.now.temperature + "℃";
         String weatherInfo = weather.now.more.info;
         titleCity.setText(cityName);
-        titleUpdateTime.setText(updateTime);
+//        titleUpdateTime.setText(updateTime);
         degreeText.setText(degree);
         weatherInfoText.setText(weatherInfo);
 //        forecastLayout.removeAllViews();
