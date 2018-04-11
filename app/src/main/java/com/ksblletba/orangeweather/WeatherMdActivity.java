@@ -12,11 +12,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -95,6 +97,10 @@ public class WeatherMdActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeMd;
     @BindView(R.id.draw_md)
     DrawerLayout drawMd;
+    @BindView(R.id.weather_md_layout)
+    NestedScrollView weatherMdLayout;
+    @BindView(R.id.nav_view)
+    NavigationView navView;
 
     private NavigationView navigationView;
 
@@ -120,7 +126,8 @@ public class WeatherMdActivity extends AppCompatActivity {
         carwashText = findViewById(R.id.carwash_text);
         sportText = findViewById(R.id.sport_text);
         swipeMd = findViewById(R.id.swipe_md);
-        navigationView =findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
+        weatherMdLayout = findViewById(R.id.weather_md_layout);
         setSupportActionBar(toolBar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -136,6 +143,7 @@ public class WeatherMdActivity extends AppCompatActivity {
             showWeatherInfo(weather);
         } else {
             weatherId = getIntent().getStringExtra("weather_id");
+            weatherMdLayout.setVisibility(View.INVISIBLE);
             requestWeather(weatherId);
         }
 
@@ -156,11 +164,11 @@ public class WeatherMdActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.nav_settings:
                         break;
                     case R.id.nav_place:
-                        Intent intent = new Intent(WeatherMdActivity.this,MainActivity.class);
+                        Intent intent = new Intent(WeatherMdActivity.this, SwitchCityActivity.class);
                         startActivity(intent);
                 }
                 return true;
@@ -249,6 +257,6 @@ public class WeatherMdActivity extends AppCompatActivity {
         comfortText.setText(comfort);
         carwashText.setText(carWash);
         sportText.setText(sport);
-
+        weatherMdLayout.setVisibility(View.VISIBLE);
     }
 }

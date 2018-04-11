@@ -3,7 +3,9 @@ package com.ksblletba.orangeweather;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,11 +94,13 @@ public class ChooseAreaFragment extends Fragment {
                         intent.putExtra("weather_id", weatherId);
                         startActivity(intent);
                         getActivity().finish();
-                    } else if(getActivity() instanceof WeatherMdActivity){
-                        WeatherMdActivity weatherActivity = (WeatherMdActivity) getActivity();
-                        weatherActivity.drawMd.closeDrawers();
-                        weatherActivity.swipeMd.setRefreshing(true);
-                        weatherActivity.requestWeather(weatherId);
+                    } else if(getActivity() instanceof SwitchCityActivity){
+                        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
+                        editor.clear();
+                        editor.apply();
+                        Intent intent = new Intent(getActivity(), WeatherMdActivity.class);
+                        intent.putExtra("weather_id", weatherId);
+                        startActivity(intent);
                     }
 
                 }
@@ -105,6 +109,13 @@ public class ChooseAreaFragment extends Fragment {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(currentLevel==LEVEL_PROVINCE){
+                    if(getActivity()instanceof MainActivity){
+                        backBtn.setVisibility(View.GONE);
+                    } else if(getActivity()instanceof SwitchCityActivity){
+                        getActivity().finish();
+                    }
+                }
                 if(currentLevel==LEVEL_COUNTY){
                     queryCities();
                 } else if(currentLevel == LEVEL_CITY){
@@ -116,8 +127,8 @@ public class ChooseAreaFragment extends Fragment {
     }
 
     private void queryProvinces(){
-        titleText.setText("CHINA");
-        backBtn.setVisibility(View.GONE);
+        titleText.setText("中国");
+        backBtn.setVisibility(View.VISIBLE);
         provinceList = DataSupport.findAll(Province.class);
         if(provinceList.size()>0){
             dataList.clear();
