@@ -27,7 +27,8 @@
             android:exported="true" />
 
         <activity android:name=".WeatherMdActivity" />
-        <activity android:name=".SwitchCityActivity"></activity>
+        <activity android:name=".SwitchCityActivity" />
+        <activity android:name=".SwitchCity2Activity"></activity>
     </application>
 
 </manifest>

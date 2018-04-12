@@ -92,8 +92,8 @@ public class WeatherMdActivity extends AppCompatActivity {
     TextView sportText;
     @BindView(R.id.fab)
     FloatingActionButton fab;
-    @BindView(R.id.demo)
-    TextView demo;
+//    @BindView(R.id.demo)
+//    TextView demo;
     @BindView(R.id.swipe_md)
     SwipeRefreshLayout swipeMd;
     @BindView(R.id.draw_md)
@@ -130,6 +130,7 @@ public class WeatherMdActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.nav_view);
         weatherMdLayout = findViewById(R.id.weather_md_layout);
         setSupportActionBar(toolBar);
+        swipeMd.setColorSchemeResources(R.color.colorPrimary);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -170,7 +171,7 @@ public class WeatherMdActivity extends AppCompatActivity {
                     case R.id.nav_settings:
                         break;
                     case R.id.nav_place:
-                        Intent intent = new Intent(WeatherMdActivity.this, SwitchCityActivity.class);
+                        Intent intent = new Intent(WeatherMdActivity.this, SwitchCity2Activity.class);
                         startActivity(intent);
                 }
                 return true;
