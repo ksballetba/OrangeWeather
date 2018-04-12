@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://D:\AndroidApp\OrangeWeather-master\OrangeWeather.iml" filepath="D:\AndroidApp\OrangeWeather-master\OrangeWeather.iml" />
-      <module fileurl="file://$PROJECT_DIR$/OrangeWeather-master.iml" filepath="$PROJECT_DIR$/OrangeWeather-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OrangeWeather.iml" filepath="$PROJECT_DIR$/OrangeWeather.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\AndroidApp\OrangeWeather-master\app\app.iml" filepath="D:\AndroidApp\OrangeWeather-master\app\app.iml" />
     </modules>
   </component>
 </project>

@@ -77,7 +77,6 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
                         app:cardCornerRadius="4dp"
-                        android:elevation="12dp"
                         android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground">
                         <include layout="@layout/now" />
@@ -90,7 +89,6 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
                         app:cardCornerRadius="4dp"
-                        android:elevation="12dp"
                         android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground">
                         <include layout="@layout/forecast"/>
@@ -107,7 +105,6 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
                         app:cardCornerRadius="4dp"
-                        android:elevation="12dp"
                         android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground">
                         <include layout="@layout/aqi" />
@@ -120,7 +117,6 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
                         app:cardCornerRadius="4dp"
-                        android:elevation="12dp"
                         android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground">
                         <include layout="@layout/suggestion" />

@@ -31,6 +31,7 @@ import com.ksblletba.orangeweather.util.HttpUtil;
 import com.ksblletba.orangeweather.util.Utility;
 
 import java.io.IOException;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -143,6 +144,7 @@ public class WeatherMdActivity extends AppCompatActivity {
             showWeatherInfo(weather);
         } else {
             weatherId = getIntent().getStringExtra("weather_id");
+            swipeMd.setRefreshing(true);
             weatherMdLayout.setVisibility(View.INVISIBLE);
             requestWeather(weatherId);
         }
@@ -227,9 +229,17 @@ public class WeatherMdActivity extends AppCompatActivity {
         String degree = weather.now.temperature + "℃";
         String weatherInfo = weather.now.more.info;
         if (weather.now.more.info.equals("晴")) {
-            Glide.with(WeatherMdActivity.this).load(R.drawable.sun).into(weatherPic);
+            Glide.with(WeatherMdActivity.this).load(R.drawable.sunny).into(weatherPic);
+        } else if(weather.now.more.info.equals("阴")){
+            Glide.with(WeatherMdActivity.this).load(R.drawable.gloomy).into(weatherPic);
+        } else if(weather.now.more.info.indexOf("云")!=-1){
+            Glide.with(WeatherMdActivity.this).load(R.drawable.rainy2).into(weatherPic);
+        } else if(weather.now.more.info.indexOf("雨")!=-1){
+             Glide.with(WeatherMdActivity.this).load(R.drawable.rainy).into(weatherPic);
+        }else if(weather.now.more.info.indexOf("风")!=-1){
+            Glide.with(WeatherMdActivity.this).load(R.drawable.cloudy).into(weatherPic);
         } else {
-            Glide.with(WeatherMdActivity.this).load(R.drawable.moon).into(weatherPic);
+            Glide.with(WeatherMdActivity.this).load(R.drawable.sun).into(weatherPic);
         }
         collapsingLayout.setTitle(cityName);
         degreeText.setText(degree);
