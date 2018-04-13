@@ -89,19 +89,11 @@ public class ChooseAreaFragment extends Fragment {
                     queryCounties();
                 } else if(currentLevel == LEVEL_COUNTY){
                     String weatherId = countyList.get(position).getWeatherId();
-                    if(getActivity() instanceof MainActivity) {
-                        Intent intent = new Intent(getActivity(), WeatherTabActivity.class);
-                        intent.putExtra("weather_id", weatherId);
-                        startActivity(intent);
-                        getActivity().finish();
-                    } else if(getActivity() instanceof SwitchCityActivity){
-                        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
-                        editor.clear();
-                        editor.apply();
-                        Intent intent = new Intent(getActivity(), WeatherMdActivity.class);
-                        intent.putExtra("weather_id", weatherId);
-                        startActivity(intent);
-                    }
+                    Intent intent = new Intent(getActivity(), WeatherTabActivity.class);
+                    intent.putExtra("weather_id", weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
+
 
                 }
             }
@@ -109,13 +101,6 @@ public class ChooseAreaFragment extends Fragment {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(currentLevel==LEVEL_PROVINCE){
-                    if(getActivity()instanceof MainActivity){
-                        backBtn.setVisibility(View.GONE);
-                    } else if(getActivity()instanceof SwitchCityActivity){
-                        getActivity().finish();
-                    }
-                }
                 if(currentLevel==LEVEL_COUNTY){
                     queryCities();
                 } else if(currentLevel == LEVEL_CITY){
@@ -128,7 +113,7 @@ public class ChooseAreaFragment extends Fragment {
 
     private void queryProvinces(){
         titleText.setText("中国");
-        backBtn.setVisibility(View.VISIBLE);
+        backBtn.setVisibility(View.GONE);
         provinceList = DataSupport.findAll(Province.class);
         if(provinceList.size()>0){
             dataList.clear();

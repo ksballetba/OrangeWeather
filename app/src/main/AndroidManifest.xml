@@ -19,15 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WeatherActivity" />
 
         <service
             android:name=".service.AutoService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".WeatherMdActivity" />
-        <activity android:name=".SwitchCityActivity" />
         <activity android:name=".SwitchCity2Activity" >
 
 
