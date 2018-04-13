@@ -28,7 +28,11 @@
 
         <activity android:name=".WeatherMdActivity" />
         <activity android:name=".SwitchCityActivity" />
-        <activity android:name=".SwitchCity2Activity"></activity>
+        <activity android:name=".SwitchCity2Activity" >
+
+
+        </activity>
+        <activity android:name=".WeatherTabActivity"></activity>
     </application>
 
 </manifest>

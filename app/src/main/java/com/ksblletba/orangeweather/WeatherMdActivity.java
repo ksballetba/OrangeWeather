@@ -114,6 +114,7 @@ public class WeatherMdActivity extends AppCompatActivity {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_md);
         ButterKnife.bind(this);
@@ -138,7 +139,6 @@ public class WeatherMdActivity extends AppCompatActivity {
         }
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         String weatherUrl = pref.getString("weather", null);
-
         if (weatherUrl != null) {
             Weather weather = Utility.handleWeatherResponse(weatherUrl);
             weatherId = weather.basic.weatherId;
@@ -190,7 +190,8 @@ public class WeatherMdActivity extends AppCompatActivity {
 
     @OnClick(R.id.fab)
     public void onClick() {
-        Toast.makeText(WeatherMdActivity.this, "adsfa", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(WeatherMdActivity.this,WeatherTabActivity.class);
+        startActivity(intent);
     }
 
     public void requestWeather(final String mWeatherId) {

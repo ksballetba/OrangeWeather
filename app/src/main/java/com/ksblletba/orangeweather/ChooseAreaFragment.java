@@ -70,7 +70,7 @@ public class ChooseAreaFragment extends Fragment {
         titleText = view.findViewById(R.id.title_text);
         backBtn = view.findViewById(R.id.back_button);
         listView = view.findViewById(R.id.list_view);
-        adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,dataList);
+        adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,dataList);
         listView.setAdapter(adapter);
         return view;
     }
@@ -90,7 +90,7 @@ public class ChooseAreaFragment extends Fragment {
                 } else if(currentLevel == LEVEL_COUNTY){
                     String weatherId = countyList.get(position).getWeatherId();
                     if(getActivity() instanceof MainActivity) {
-                        Intent intent = new Intent(getActivity(), WeatherMdActivity.class);
+                        Intent intent = new Intent(getActivity(), WeatherTabActivity.class);
                         intent.putExtra("weather_id", weatherId);
                         startActivity(intent);
                         getActivity().finish();
@@ -192,7 +192,7 @@ public class ChooseAreaFragment extends Fragment {
                     @Override
                     public void run() {
                         closeProgressDialog();
-                        Toast.makeText(getContext(),"加载失败",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"加载失败",Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -200,7 +200,7 @@ public class ChooseAreaFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String responseText = response.body().string();
-                boolean result = false;
+                boolean result = true;
                 if("province".equals(type)){
                     result = Utility.handleProvinceResponse(responseText);
                 } else if("city".equals(type)){
@@ -208,7 +208,7 @@ public class ChooseAreaFragment extends Fragment {
                 } else if("county".equals(type)){
                     result = Utility.handleCountyResponse(responseText,selectedCity.getId());
                 }
-                if(result){
+                if(!result){
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
