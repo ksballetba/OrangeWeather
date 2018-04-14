@@ -41,8 +41,7 @@
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         app:layout_collapseMode="parallax"
-                        android:fitsSystemWindows="true"
-                        android:src="@drawable/gloomy"/>
+                        android:fitsSystemWindows="true" />
 
                     <android.support.v7.widget.Toolbar
                         android:id="@+id/tool_bar_tab"

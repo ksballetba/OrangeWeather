@@ -9,6 +9,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.Response;
 
 
@@ -80,6 +83,9 @@ public class WeatherFragment extends Fragment {
     private String weatherId;
 
 
+    public TextView getDateText0() {
+        return dateText0;
+    }
 
     @Nullable
     @Override
@@ -107,12 +113,10 @@ public class WeatherFragment extends Fragment {
                 requestWeather(weatherId);
             }
         });
-        return view;
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+
+
+        return view;
     }
 
 
@@ -162,20 +166,23 @@ public class WeatherFragment extends Fragment {
         String degree = weather.now.temperature + "℃";
         String weatherInfo = weather.now.more.info;
         ImageView weatherPic = getActivity().findViewById(R.id.weather_pic_tab);
-        if (weather.now.more.info.equals("晴")) {
-            Glide.with(getActivity()).load(R.drawable.sunny).into(weatherPic);
-        } else if (weather.now.more.info.equals("阴")) {
-            Glide.with(getActivity()).load(R.drawable.gloomy).into(weatherPic);
-        } else if (weather.now.more.info.indexOf("云") != -1) {
-            Glide.with(getActivity()).load(R.drawable.rainy2).into(weatherPic);
-        } else if (weather.now.more.info.indexOf("雨") != -1) {
-            Glide.with(getActivity()).load(R.drawable.rainy).into(weatherPic);
-        } else if (weather.now.more.info.indexOf("风") != -1) {
-            Glide.with(getActivity()).load(R.drawable.cloudy).into(weatherPic);
-        } else {
-            Glide.with(getActivity()).load(R.drawable.sun).into(weatherPic);
-        }
+//        if (weather.now.more.info.equals("晴")) {
+//            Glide.with(getActivity()).load(R.drawable.sunny).into(weatherPic);
+//        } else if (weather.now.more.info.equals("阴")) {
+//            Glide.with(getActivity()).load(R.drawable.gloomy).into(weatherPic);
+//        } else if (weather.now.more.info.indexOf("云") != -1) {
+//            Glide.with(getActivity()).load(R.drawable.rainy2).into(weatherPic);
+//        } else if (weather.now.more.info.indexOf("雨") != -1) {
+//            Glide.with(getActivity()).load(R.drawable.rainy).into(weatherPic);
+//        } else if (weather.now.more.info.indexOf("风") != -1) {
+//            Glide.with(getActivity()).load(R.drawable.cloudy).into(weatherPic);
+//        } else {
+//            Glide.with(getActivity()).load(R.drawable.sun).into(weatherPic);
+//        }
 
+        WeatherTabActivity wta = (WeatherTabActivity)getActivity();
+        wta.setDate(weather.forecastList.get(0).date);
+        wta.setWeaInfo(weatherInfo);
         degreeText.setText(degree);
         weatherInfoText.setText(weatherInfo);
         dateText0.setText(weather.forecastList.get(0).date);

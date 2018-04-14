@@ -1,6 +1,7 @@
 package com.ksblletba.orangeweather;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,13 +26,19 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.ksblletba.orangeweather.util.HttpUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class WeatherTabActivity extends AppCompatActivity {
 
@@ -59,6 +66,26 @@ public class WeatherTabActivity extends AppCompatActivity {
     private WeatherFragment weatherFragment = new WeatherFragment();
     private OrangeFragment orangeFragment = new OrangeFragment();
     private List<Fragment> fragments = new ArrayList<>();
+    public String date;
+    public String weaInfo;
+
+    public String getWeaInfo() {
+        return weaInfo;
+    }
+
+    public void setWeaInfo(String weaInfo) {
+        this.weaInfo = weaInfo;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+
 
 
     @Override
@@ -84,7 +111,8 @@ public class WeatherTabActivity extends AppCompatActivity {
                 swipeTab.setEnabled(verticalOffset >= 0 ? true : false);
             }
         });
-
+        Glide.with(WeatherTabActivity.this).load(R.drawable.cat_cyan).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(weatherPicTab);
+        fabTab.setImageResource(R.drawable.ic_cloud_white_24dp);
         navViewTab.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -98,6 +126,32 @@ public class WeatherTabActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if(tab.getText().toString().equals("贴士")){
+                    Glide.with(WeatherTabActivity.this).load(R.drawable.cat_pink).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(weatherPicTab);
+                    fabTab.setImageResource(R.drawable.ic_favorite_white_24dp);
+                } else if(tab.getText().toString().equals("天气")){
+                    Glide.with(WeatherTabActivity.this).load(R.drawable.cat_cyan).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(weatherPicTab);
+                    fabTab.setImageResource(R.drawable.ic_cloud_white_24dp);
+                }
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
     }
 
     @Override
